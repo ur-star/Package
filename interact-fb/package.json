@@ -1,0 +1,18 @@
+{
+  "name": "interact-fb",
+  "version": "1.0.0",
+  "description": "A npm package that hleps you interact with FB APIs in easy way",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "fb",
+    "GraphAPI",
+    "facebook",
+    "social",
+    "npm"
+  ],
+  "author": "Utkarsh Roy",
+  "license": "ISC"
+}
