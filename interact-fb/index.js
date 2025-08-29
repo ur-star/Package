@@ -1,54 +1,101 @@
 // index.js
 
-// Init SDK
-import { initFacebookSdk } from "./src/initFacebookSDK.js";
+// Configuration
+export { setConfig, getConfig, resetConfig, DEFAULT_CONFIG } from './src/config.js';
 
-// Auth
-import { loginWithFacebook } from "./src/auth.js";
-
-// Profile
-import { getProfile as fetchUserProfile } from "./src/profile.js";
-
-// Pages
-import { getPages as fetchUserPages } from "./src/pages.js";
-
-// Forms
-import { getLeadForms as fetchPageLeadForms } from "./src/forms.js";
-
-// Leads
-import { getLeads as fetchFormLeads } from "./src/leads.js";
-
-// Comments
-import { getComments as fetchPostComments } from "./src/comments.js";
-
-// Likes
-import { getLikes as fetchPostLikes } from "./src/likes.js";
-
-// Pictures
-import { getPicture as fetchUserPicture } from "./src/pictures.js";
-
-// Posts (and related functions)
-import {
-  getPagePosts as fetchPagePosts,
-  getPostComments as fetchPostsComments,
-  getPostLikes as fetchPostsLikes,
-} from "./src/posts.js";
-
-// Permission check (if implemented)
-import { checkPermissions } from "./src/permissions.js";
-
+// Error handling
 export {
-  initFacebookSdk,
+  FacebookSDKError,
+  FacebookAuthError,
+  FacebookAPIError,
+  FacebookPermissionError,
+  FacebookTimeoutError,
+  createFacebookError,
+  handleError,
+  logError
+} from './src/errors.js';
+
+// Utilities (token caching and validation)
+export {
+  resolveAccessToken,
+  setAccessToken,
+  clearAccessToken,
+  getCachedAccessToken,
+  assertString,
+  assertPositiveInteger,
+  assertObject
+} from './src/utils.js';
+
+// Core API
+export { graphAPI, batchGraphAPI } from './src/graph.js';
+
+// SDK Initialization
+export { initFacebookSdk,getSDKStatus } from './src/initFacebookSDK.js';
+
+// Authentication
+export {
   loginWithFacebook,
-  fetchUserProfile,
-  fetchUserPicture,
-  fetchUserPages,
-  fetchPagePosts,
-  fetchPageLeadForms,
-  fetchFormLeads,
-  fetchPostComments,
-  fetchPostLikes,
-  fetchPostsComments,
-  fetchPostsLikes,
-  checkPermissions,
-};
+  logoutFromFacebook,
+  getLoginStatus,
+  isLoggedIn,
+  getAccessToken
+} from './src/auth.js';
+
+// Profile Management
+export {
+  getProfile,
+  getProfilePicture,
+  getBasicProfile,
+} from './src/profile.js';
+
+// Pages Management
+export {
+  getPages,
+  getPageInfo,
+  getManagedPage,
+  managesPage
+} from './src/pages.js';
+
+// Posts Management
+export {
+  getPagePosts,
+  getPostDetails,
+} from './src/posts.js';
+
+// Lead Forms Management
+export {
+  getLeadForms,
+  getLeadFormDetails,
+  getActiveLeadForms,
+  getLeadFormsFromMultiplePages,
+  getLeadFormStats
+} from './src/forms.js';
+
+// Leads Management
+export {
+  getLeads,
+  getAllLeads,
+  getLeadsFromMultipleForms,
+  getLeadStats,
+  getRecentLeads
+} from './src/leads.js';
+
+// Comments Management
+export { getComments,getLikes } from './src/comments.js';
+
+
+
+// Permissions Management
+export {
+  getAllPermissions,
+  fetchAllPermissions,
+  getAllRequiredPermissions
+} from './src/permissions.js';
+
+// Convenience exports with legacy names for backward compatibility
+export { getProfile as fetchUserProfile } from './src/profile.js';
+export { getPages as fetchUserPages } from './src/pages.js';
+export { getPagePosts as fetchPagePosts } from './src/posts.js';
+export { getLeadForms as fetchPageLeadForms } from './src/forms.js';
+export { getLeads as fetchFormLeads } from './src/leads.js';
+export { getComments as fetchPostComments } from './src/comments.js';
